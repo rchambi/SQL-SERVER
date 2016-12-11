@@ -1,0 +1,17 @@
+create table producto(cod int identity, cliente varchar(30), Nomproducto varchar(30), cantidad int primary key(cod))
+----------------------------------------------------------------------
+insert into producto values('carlos','bicicleta',3)
+insert into producto values('carlos','cadena',2)
+insert into producto values('carlos','bicicleta',5)
+insert into producto values('lisa','bicicleta',3)
+insert into producto values('lisa','cadena',3)
+insert into producto values('lisa','cadena',4)
+-------------------------------------------------------
+select * from producto
+-------------------------------------------------------------------------------
+select cliente, sum([bicicleta]) [bicicleta], sum([cadena]) [cadena] from  producto --------nombre de la tabla
+pivot (sum(cantidad) for Nomproducto in ([bicicleta],[cadena])) as pivottable
+group by cliente;
+------------------------------------------------------
+select * from producto
+------------------------------------------------------
