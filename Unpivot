@@ -1,0 +1,37 @@
+CREATE TABLE #MESES (RUT VARCHAR(50), ENERO INT, FEBRERO INT, MARZO INT)
+
+
+INSERT INTO #MESES VALUES ('1145600k' , 150 , 200 , 500 )
+
+INSERT INTO #MESES VALUES ('15670080' , 300 , 150 , 400 )
+
+INSERT INTO #MESES VALUES ('18979520' , 450 , 148 , 250 )
+
+INSERT INTO #MESES VALUES ('1578900k' , 320 , 120 , 300 )
+
+
+ -----------------
+
+select * from #meses
+
+/****************** UNPIVOT OPERATION *******************/
+
+SELECT   RUT,
+
+         MESES,
+
+         IMPORTE
+
+FROM     (SELECT *
+
+          FROM   #MESES) p
+
+         UNPIVOT
+
+         (IMPORTE
+
+          FOR MESES IN ( [ENERO],[FEBRERO],[MARZO]) ) AS unpvt
+
+ORDER BY RUT,
+
+         MESES;
